@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <groupId>org.jpetrak.gate.plugins</groupId>
+  <artifactId>miscdebugging</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Misc Debugging</name>
+  <description>
+     A plugin with various resources that may help with debugging, especially with
+     duplication, multithreading and nested pipelines.
+  </description>
+  <url>https://github.com/johann-petrak/gateplugin-MiscDebugging</url>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License (LGPL), Version 3</name>
+      <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Johann Petrak</name>
+      <email>johann.petrak@gmail.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/johann-petrak/gateplugin-MiscDebugging.git</connection>
+    <developerConnection>scm:git:git@github.com:GateNLP/gateplugin-MiscDebugging.git</developerConnection>
+    <url>https://github.com/johann-petrak/gateplugin-MiscDebugging</url>
+  </scm>
+
+  <dependencies>
+  </dependencies>
+  <parent>
+    <groupId>uk.ac.gate</groupId>
+    <artifactId>gate-plugin-base</artifactId>
+    <version>8.5.1</version>
+    <relativePath/>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+</project>
