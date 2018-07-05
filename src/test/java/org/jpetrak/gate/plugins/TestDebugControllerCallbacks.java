@@ -1,5 +1,8 @@
 package org.jpetrak.gate.plugins;
 
+import gate.Factory;
+import gate.creole.AbstractLanguageAnalyser;
+import gate.creole.ResourceInstantiationException;
 import gate.test.GATEPluginTests;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,8 +19,8 @@ import static org.junit.Assert.*;
 public class TestDebugControllerCallbacks extends GATEPluginTests {
 
   @Test
-  public void testSomething() {
-    AbstractLanguageAnalyser pr = Factory.createResource("org.jpetrak.gate.plugins.DebugControllerCallbacks");
+  public void testSomething() throws ResourceInstantiationException {
+    AbstractLanguageAnalyser pr = (AbstractLanguageAnalyser) Factory.createResource("org.jpetrak.gate.plugins.DebugControllerCallbacks");
     try {
       // testing code goes here
     } finally {
