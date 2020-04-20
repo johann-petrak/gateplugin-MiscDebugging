@@ -77,7 +77,7 @@ public class DebugControllerCallbacks
 
   @Override
   public Resource init() throws ResourceInstantiationException {
-    System.err.println("DEBUG DebugControllerCallbacks: running init()");
+    System.err.println("DEBUG DebugControllerCallbacks: running init() in "+this.getName());
     if(getNDuplicates() == null || getNDuplicates().get() == 0) {        
       System.err.println("DEBUG DebugControllerCallbacks: creating first instance of PR "+this.getName());
       setNDuplicates(new AtomicInteger(1));
@@ -92,6 +92,12 @@ public class DebugControllerCallbacks
   }
 
   @Override
+  public void reInit() {
+    // avoid init() to get invoked and mess with the number of duplicates!
+  }
+  
+  
+  @Override
   public void execute() throws ExecutionException {
     if(isInterrupted()) {
       throw new ExecutionInterruptedException("Execution of A processing resources to debug the invocation of controller callbacks and other stuff has been interrupted!");
@@ -99,7 +105,7 @@ public class DebugControllerCallbacks
     interrupted = false;
 
     Document doc = getDocument();
-    System.err.println("DEBUG DebugControllerCallbacks: execute() for doc="+doc.getName());
+    System.err.println("DEBUG DebugControllerCallbacks: execute() for doc="+doc.getName()+" in "+this.getName());
   }
 
   @Override
@@ -107,10 +113,10 @@ public class DebugControllerCallbacks
     int tmp = getRemainingDuplicates().getAndIncrement();
     if(tmp==0) {
       System.err.println("DEBUG DebugControllerCallbacks: controllerExecutionStarted() first for controller="+
-              cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp);
+              cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp+" in "+this.getName());
     } else {
       System.err.println("DEBUG DebugControllerCallbacks: controllerExecutionStarted() subsequent for controller="+
-              cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp);
+              cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp+" in "+this.getName());
     }
   }
 
@@ -118,14 +124,14 @@ public class DebugControllerCallbacks
   public void controllerExecutionFinished(Controller cntrlr) throws ExecutionException {
     int tmp = getRemainingDuplicates().decrementAndGet();
     System.err.println("DEBUG DebugControllerCallbacks: controllerExecutionFinished() for controller="+
-            cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp);
+            cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp+" in "+this.getName());
   }
 
   @Override
   public void controllerExecutionAborted(Controller cntrlr, Throwable thrwbl) throws ExecutionException {
     int tmp = getRemainingDuplicates().decrementAndGet();
     System.err.println("DEBUG DebugControllerCallbacks: controllerExecutionAborted() for controller="+
-            cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp);
+            cntrlr.getName()+" duplicateId="+duplicateId+" remaining="+tmp+" in "+this.getName());
   }
 
 }
